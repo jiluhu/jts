@@ -98,5 +98,32 @@ public class GeoJsonTest extends GeometryTestCase {
     Geometry result = this.geoJsonReader.read(json);
     checkEqual(result, expected);
   }
+  public void testMultiPolygon2() throws ParseException {
+   /* runTest("MULTIPOLYGON ( ((0 0, 100 0, 100 100, 0 100, 0 0), (1 1, 1 10, 10 10, 10 1, 1 1) ), ((200 200, 200 250, 250 250, 250 200, 200 200)) )",
+            "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[0.0,0.0],[100,0.0],[100,100],[0.0,100],[0.0,0.0]],[[1,1],[1,10],[10,10],[10,1],[1,1]]],[[[200,200],[200,250],[250,250],[250,200],[200,200]]]]}"
+    );*/
+    //runTest("MULTIPOLYGON ( ((0 0, 100 0, 100 100, 0 100, 0 0), (1 1, 1 10, 10 10, 10 1, 1 1) ), ((200 200, 200 250, 250 250, 250 200, 200 200)) )");
 
+    String jsonA = "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[0.0,0.0],[100,0.0],[100,100],[0.0,100],[0.0,0.0]],[[1,1],[1,10],[10,10],[10,1],[1,1]]],[[[200,200],[200,250],[250,250],[250,200],[200,200]]]]}";
+    String jsonB = "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[0.0,0.0],[100,0.0],[100,100],[0.0,100],[0.0,0.0]],[[1,1],[1,10],[10,10],[10,1],[1,1]]],[[[200,200],[200,250],[250,250],[250,200],[200,200]]]]}";
+
+  /*runTest("LINESTRING (1 2, 10 20, 100 200)",
+            "{\"type\":\"LineString\",\"coordinates\":[[1,2],[10,20],[100,200]]}");
+  }
+   runTest("POLYGON ((0 0, 100 0, 100 100, 0 100, 0 0))",
+            "{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[100,0.0],[100,100],[0.0,100],[0.0,0.0]]]}");
+*/
+    //jsonA = "{\"type\":\"LineString\",\"coordinates\":[[1,2],[10,20],[100,200]]}";
+    //jsonB = "{\"type\":\"LineString\",\"coordinates\":[[1,2],[10,20],[100,200]]}";
+    jsonA = "{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[100,0.0],[100,100],[0.0,100],[0.0,0.0]]]}";
+    jsonB = "{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[50,0.0],[100,100],[0.0,100],[0.0,0.0]]]}";
+
+    Geometry resultA = this.geoJsonReader.read(jsonA);
+    Geometry resultB = this.geoJsonReader.read(jsonB);
+
+    Boolean flag=resultB.contains(resultA);
+    System.out.print(flag);
+
+
+  }
 }
